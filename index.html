@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WardOS v2 — Ward Control System</title>
+<meta name="description" content="Sistem manajemen pasien ward untuk koas/co-assistant — RSUD Karsa Husada Batu">
+<meta name="theme-color" content="#080c18">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <div>
+    <div class="tb-title" id="topbar-title">📊 Dashboard</div>
+    <div class="tb-sub" id="topbar-sub">Ikhtisar semua pasien</div>
+  </div>
+  <div class="tb-right" id="topbar-right"></div>
+</div>
+
+<!-- APP -->
+<div id="app">
+
+  <!-- SIDEBAR -->
+  <nav id="sb">
+    <div class="logo">
+      <div class="logo-n">Ward<span>OS</span></div>
+      <div class="logo-s" id="logo-hospital">RSUD Karsa Husada Batu</div>
+    </div>
+    <div class="sbs">
+      <!-- Navigation (NEW) -->
+      <div class="nlab">Navigasi <span class="ntag">BARU</span></div>
+      <button class="ni active" id="n-dashboard" onclick="navigate('dashboard')">
+        <span class="ic">📊</span>Dashboard
+      </button>
+      <button class="ni" id="n-input" onclick="navigate('input')">
+        <span class="ic">➕</span>Input Pasien
+      </button>
+      <button class="ni" id="n-peta" onclick="navigate('peta')">
+        <span class="ic">🗺</span>Peta Ruangan
+      </button>
+
+      <div class="sdv"></div>
+
+      <!-- Room List -->
+      <div class="nlab">Ruangan <span class="otag">TETAP</span></div>
+      <div id="sb-rooms">
+        <!-- Populated by renderSidebar() -->
+      </div>
+    </div>
+
+    <!-- Bottom Actions -->
+    <div class="sbb">
+      <button class="sa" onclick="handleExport()">📤 Export JSON</button>
+      <button class="sa" onclick="handleImport()">📥 Import JSON</button>
+      <button class="sa" onclick="openSettings()">⚙️ Pengaturan</button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div id="mn">
+    <div id="ct">
+
+      <!-- Dashboard View -->
+      <div class="vw active" id="v-dashboard"></div>
+
+      <!-- Input View -->
+      <div class="vw" id="v-input"></div>
+
+      <!-- Peta Ruangan View -->
+      <div class="vw" id="v-peta"></div>
+
+      <!-- Room View (Bed Grid) -->
+      <div class="vw" id="v-room"></div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
+<!-- External Libraries (load first) -->
+<!-- QRCode.js: generate QR saat export. Import/scan pakai BarcodeDetector API bawaan browser. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<!-- Data & Utils -->
+<script src="js/data.js"></script>
+<script src="js/parser.js"></script>
+<script src="js/groq.js"></script>
+
+<!-- UI Helpers -->
+<script src="js/ui.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/settings.js"></script>
+
+<!-- Views -->
+<script src="js/views/dashboard.js"></script>
+<script src="js/views/input.js"></script>
+<script src="js/views/peta.js"></script>
+<script src="js/views/room.js"></script>
+
+<!-- App Router -->
+<script src="js/app.js"></script>
+
+<!-- QR Feature -->
+<script src="js/qr.js"></script>
+
+</body>
+</html>
